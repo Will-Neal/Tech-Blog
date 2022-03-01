@@ -2,11 +2,13 @@ const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const articleRouter = require('./controllers/articles')
+const sequelize = require('./config/connection');
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const sequelize = require('./config/connection');
+
 
 const hbs = exphbs.create({});
 
@@ -35,5 +37,7 @@ app.get('/', (req, res) => {
 })
 
 
+sequelize.sync({ force:false }).then(()=> {
+    app.listen(PORT, () => console.log(`Now listening at http://localhost:${PORT}`));
+});
 
-app.listen(PORT, () => console.log(`Now listening at http://localhost:${PORT}`));
