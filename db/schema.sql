@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS blognog_db
+
+CREATE DATABASE blognog_db

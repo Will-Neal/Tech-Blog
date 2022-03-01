@@ -11,20 +11,21 @@
 </head>
 <body>
     <div>
-        <header class="d-flex flex-column">
-            <div class="jumbotron d-flex flex-column justify-content-center">
-                <h1 class="display-6">BlogNog</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
-                    featured content or information.</p>
+        <header>
+            <div class="jumbotron bg-warning">
+                <h1 class="display-2">BlogNog</h1>
+                <p class="lead">A blog so sweet it goes down easy</p>
                 <hr class="my-4">
                 <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="/articles" role="button">Learn more</a>
+                    <a class="btn btn-primary btn-lg" href="/articles/new" role="button">New post</a>
                 </p>
             </div>
         </header>
     </div>
     <main>
-        {{{ body }}}
+        <div class="container">
+            {{{ body }}}
+        </div>
     </main>
 <script src="/js/testScript.js"></script>
 </body>
