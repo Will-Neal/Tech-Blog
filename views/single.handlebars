@@ -5,6 +5,9 @@
       <h6 class="card-subtitle mb-2 text-muted">{{cleanPost.date}}</h6>
       <p class="card-text">content{{cleanPost.content}}</p>
       <a href="/" class="btn btn-secondary">Home</a>
+      <form action="/update/{{cleanPost.id}}" method="GET" class="d-inline">
+        <button class="btn btn-info">Edit</button>
+      </form>
     </div>
   </div>
 

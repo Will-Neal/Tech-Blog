@@ -30,6 +30,20 @@ app.get('/', async (req, res) => {
         res.render('index', {articles}) 
 })
 
+app.get('/update/:id', async (req, res) => {
+    try{
+    const postObj = await Post.findOne({
+        where: { id:req.params.id }
+    });
+    const post = postObj.get({ plain:true })
+    console.log(post)
+    // const post = postObj.map((post) => post.get({ plain:true }))
+    res.render('update', {post})
+    } catch(err) {
+        console.log(err)
+    }
+});
+
 
 sequelize.sync({ force:false }).then(()=> {
     app.listen(PORT, () => console.log(`Now listening at http://localhost:${PORT}`));
