@@ -19,9 +19,9 @@ Post.init(
         subject: {
             type: DataTypes.STRING,
         },
-        date: {
-            type: DataTypes.DATE,
-        },
+        // date: {
+        //     type: DataTypes.DATE,
+        // },
         content: {
             type: DataTypes.TEXT,
         },
