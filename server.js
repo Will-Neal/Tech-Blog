@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars');
 const articleRouter = require('./controllers/articles')
 const sequelize = require('./config/connection');
 const { Post } = require('./models');
+const methodOverride = require('method-override')
 
 
 const app = express();
@@ -19,6 +20,7 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'))
 
 app.use('/articles', articleRouter)
 

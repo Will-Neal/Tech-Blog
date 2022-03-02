@@ -14,7 +14,8 @@ router.get('/:id', async (req, res) => {
        }) 
        const cleanPost = singlePost.get({ plain:true })
        const commentsObj = await Comment.findAll({
-           where: {post_id:id}
+           where: {post_id:id},
+           order: [["id", "DESC"]]
        })
        const comments = commentsObj.map((comment) => comment.get({ plain:true }))
        //Need to figure out why they are showing up as
@@ -49,6 +50,13 @@ router.post('/comment/:id', (req, res) => {
         res.redirect(`/articles/${req.params.id}`)
         
     })
+})
+
+router.delete('/:id', async (req, res) => {
+    await Post.destroy({
+        where: { id:req.params.id }
+    });
+    res.redirect('/')
 })
 
 module.exports = router
