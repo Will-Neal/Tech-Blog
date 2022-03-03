@@ -6,34 +6,18 @@ router.get('/new', (req, res) => {
     res.render('new') 
 })
 
-router.get('/update/:id', async (req, res) => {
+router.get('/edit/:id', async (req, res) => {
     try{
     const postObj = await Post.findOne({
         where: { id:req.params.id }
     });
     const post = postObj.get({ plain:true })
-    console.log(post)
     // const post = postObj.map((post) => post.get({ plain:true }))
     res.render('update', {post})
     } catch(err) {
         console.log(err)
     }
 });
-
-
-// router.put('/edit/:id', async (req, res) => {
-//     await Post.update({
-//         title: req.body.title,
-//         subject: req.body.subject,
-//         content: req.body.content
-//     },
-//         {
-//             where: {
-//                 id: req.params.id
-//             }
-//         });
-//     res.redirect('articles/:id')
-// })
 
 router.get('/:id', async (req, res) => {
     id = req.params.id
@@ -75,9 +59,23 @@ router.post('/comment/:id', (req, res) => {
         post_id: req.params.id
     })
     .then((newComment) => {
-        console.log(newComment);
         res.redirect(`/articles/${req.params.id}`)
         
+    })
+});
+
+router.put('/:id', (req, res) => {
+    Post.update({
+        title: req.body.title,
+        subject: req.body.subject,
+        content: req.body.content
+    },{
+        where: {
+            id: req.params.id
+        }
+    })
+    .then((updatedPost) => {
+        res.redirect('/')
     })
 })
 
