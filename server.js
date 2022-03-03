@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const articleRouter = require('./controllers/articles')
+const userRouter = require('./controllers/user')
 const sequelize = require('./config/connection');
 const { Post } = require('./models');
 const methodOverride = require('method-override')
@@ -22,7 +23,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'))
 
+app.use('/user', userRouter)
 app.use('/articles', articleRouter)
+
 
 app.get('/', async (req, res) => {
         articleMess = await Post.findAll({order: [["id", "DESC"]]});
