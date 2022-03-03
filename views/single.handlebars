@@ -1,9 +1,10 @@
+  
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">{{cleanPost.title}}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{cleanPost.subject}}</h6>
       <h6 class="card-subtitle mb-2 text-muted">{{cleanPost.date}}</h6>
-      <p class="card-text">content{{cleanPost.content}}</p>
+      <p class="card-text">{{cleanPost.content}}</p>
       <a href="/" class="btn btn-secondary">Home</a>
       <form action="edit/{{cleanPost.id}}" method="GET" class="d-inline">
         <button class="btn btn-info">Edit</button>
