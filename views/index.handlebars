@@ -1,12 +1,14 @@
-<h3 style="text-align: center;">Posts</h3>
+{{#if loggedIn}}
+  <h6 style="text-align: center"> Welcome back {{username}}!! You are logged in</h6>
+{{/if}}
 
 {{#each articles as |article|}}
   <div class="card">
     <div class="card-body">
-      <h6>{{format_date createdAt}}</h6>
+      <p style="font-weight: bold">{{user.name}} - {{format_date createdAt}}</p>
       <h5 class="card-title">{{title}}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{subject}}</h6>
-      <h6 class="card-subtitle mb-2 text-muted">{{date}}</h6>
+      <h6 class="card-subtitle mb-2 text-muted"></h6>
       <p class="card-text">{{content}}</p>
       <a href="/articles/{{id}}" class="btn btn-secondary">Read</a>
       <form action="articles/{{id}}?_method=DELETE" method="POST" class="d-inline">

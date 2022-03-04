@@ -1,10 +1,10 @@
   
   <div class="card">
     <div class="card-body">
-      <h6>{{format_date cleanPost.createdAt}} </h6>
+      <p class="card-title" style="font-weight: bold">{{cleanPost.user.name}} - {{format_date cleanPost.createdAt}}</p>
       <h5 class="card-title">{{cleanPost.title}}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{cleanPost.subject}}</h6>
-      <h6 class="card-subtitle mb-2 text-muted">{{cleanPost.date}}</h6>
+      <h6 class="card-subtitle mb-2 text-muted"></h6>
       <p class="card-text">{{cleanPost.content}}</p>
       <a href="/" class="btn btn-secondary">Home</a>
       <form action="edit/{{cleanPost.id}}" method="GET" class="d-inline">
@@ -13,15 +13,17 @@
     </div>
   </div>
 
-<h4 style="text-align: center;">Comments</h4>
+<h6 style="text-align: center">Comments</h6>
 
 {{#each comments as |comment|}}
+  <div class="container">
    <div class="card">
+     <p style="font-weight: bold; font-size: 85%">{{user.name}} - {{format_date createdAt}}</p>
     <div class="card-body">
-      <h6>{{format_date comment.createdAt}}</h6>  
       <p class="card-title">{{comment.comment}}</p>
     </div>
   </div>
+</div>
 {{/each}}
 
 

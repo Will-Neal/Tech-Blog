@@ -3,15 +3,30 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const articleRouter = require('./controllers/articles')
 const userRouter = require('./controllers/user')
-const sequelize = require('./config/connection');
-const { Post } = require('./models');
-const methodOverride = require('method-override')
 const helpers = require('./utils/helpers')
+
+const { Post, User } = require('./models');
+const methodOverride = require('method-override')
+const session = require('express-session')
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const sequelize = require('./config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store)
 
+const sess = {
+    secret: 'Super secret secret',
+    cookie: {},
+    resave: false,
+    saveUninitiated: true,
+    store: new SequelizeStore({
+        db: sequelize
+    })
+};
+
+app.use(session(sess));
 
 const hbs = exphbs.create({ helpers });
 
@@ -28,9 +43,14 @@ app.use('/articles', articleRouter)
 
 
 app.get('/', async (req, res) => {
-        articleMess = await Post.findAll({order: [["id", "DESC"]]});
+        articleMess = await Post.findAll({
+            order: [["id", "DESC"]],
+            include: [{ model: User }],
+        });
         articles = articleMess.map((article) => article.get({ plain:true }))
-        res.render('index', {articles}) 
+        loggedIn = req.session.loggedIn
+        username = req.session.username
+        res.render('index', {articles, loggedIn, username}) 
 })
 
 sequelize.sync({ force:false }).then(()=> {

@@ -27,8 +27,10 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/user/register">Sign Up <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Logout</a>
+                        <li class="nav-item active">
+                            <form action="/user/logout" method="POST">
+                                <button class="nav-link bg-light" style="border: 0px; margin-top: 4px">Logout</button>
+                            </form>
                         </li>
                     </ul>
                 </div>
