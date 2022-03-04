@@ -6,14 +6,14 @@ const userRouter = require('./controllers/user')
 const sequelize = require('./config/connection');
 const { Post } = require('./models');
 const methodOverride = require('method-override')
-
+const helpers = require('./utils/helpers')
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 
 
-const hbs = exphbs.create({});
+const hbs = exphbs.create({ helpers });
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');

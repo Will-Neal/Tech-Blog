@@ -1,6 +1,7 @@
   
   <div class="card">
     <div class="card-body">
+      <h6>{{format_date cleanPost.createdAt}} </h6>
       <h5 class="card-title">{{cleanPost.title}}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{cleanPost.subject}}</h6>
       <h6 class="card-subtitle mb-2 text-muted">{{cleanPost.date}}</h6>
@@ -12,10 +13,13 @@
     </div>
   </div>
 
+<h4 style="text-align: center;">Comments</h4>
+
 {{#each comments as |comment|}}
    <div class="card">
     <div class="card-body">
-      <h6 class="card-title">{{comment.comment}}</h6>
+      <h6>{{format_date comment.createdAt}}</h6>  
+      <p class="card-title">{{comment.comment}}</p>
     </div>
   </div>
 {{/each}}

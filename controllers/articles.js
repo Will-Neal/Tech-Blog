@@ -12,7 +12,6 @@ router.get('/edit/:id', async (req, res) => {
         where: { id:req.params.id }
     });
     const post = postObj.get({ plain:true })
-    // const post = postObj.map((post) => post.get({ plain:true }))
     res.render('update', {post})
     } catch(err) {
         console.log(err)
@@ -31,7 +30,7 @@ router.get('/:id', async (req, res) => {
            order: [["id", "DESC"]]
        })
        const comments = commentsObj.map((comment) => comment.get({ plain:true }))
-       //Need to figure out why they are showing up as
+       console.log(comments)
        res.render('single', {cleanPost, comments}) 
     } catch(err) {
         console.log(err)
