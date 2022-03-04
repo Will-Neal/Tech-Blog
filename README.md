@@ -20,6 +20,8 @@
   To use the application simply call app.js using Node from the command line and then follow the prompts. Use your arrow keys to navigate the menu and enter the information that you would like to add or change. When you are finished navigate to exit and press enter.
 
   To check out the deployed application [click here.](https://blognog-techblog.herokuapp.com/)
+
+  ![BlogNog Screenshot](https://github.com/Will-Neal/Tech-Blog/blob/main/screenshots/blognog-screenshot.jpg?raw=true)
   ## License
 
   ![License Badge](https://img.shields.io/badge/license-MIT-orange?style=plastic=appveyor?raw=true)
