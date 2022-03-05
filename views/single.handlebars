@@ -2,8 +2,10 @@
   <div class="card">
     <div class="card-body">
       <p class="card-title" style="font-weight: bold">{{cleanPost.user.name}} - {{format_date cleanPost.createdAt}}</p>
-      <h5 class="card-title">{{cleanPost.title}}</h5>
+      <h5 style="font-weight: bold" class="card-title">{{cleanPost.title}}</h5>
+      <br>
       <h6 class="card-subtitle mb-2 text-muted">{{cleanPost.subject}}</h6>
+      <br>
       <h6 class="card-subtitle mb-2 text-muted"></h6>
       <p class="card-text">{{cleanPost.content}}</p>
       <a href="/" class="btn btn-secondary">Home</a>
