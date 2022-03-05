@@ -1,0 +1,35 @@
+<h1 style="text-align:center" >Posts</h1>
+
+{{#each articles as |article|}}
+  <div class="card">
+    <div class="card-body">
+      <p style="font-weight: bold">{{format_date createdAt}}</p>
+     
+      <h5 style="font-weight: bold" class="card-title">{{title}}</h5>
+      <br>
+      <h6 class="card-subtitle mb-2 text-muted">{{subject}}</h6>
+      <br>
+      <h6 class="card-subtitle mb-2 text-muted"></h6>
+      <p class="card-text">{{content}}</p>
+      <a href="/articles/{{id}}" class="btn btn-secondary">Read</a>
+      <form action="articles/{{id}}?_method=DELETE" method="POST" class="d-inline">
+        <button class="btn btn-danger">Delete</button>
+      </form>
+      
+    
+    </div>
+  </div>
+{{/each}}
+
+<h1 style="text-align:center" >Comments</h1>
+
+{{#each comments as |comment|}}
+  <div class="container">
+   <div class="card">
+     {{!-- <p style="font-weight: bold; font-size: 85%">{{format_date createdAt}}</p> --}}
+    <div class="card-body">
+      <p class="card-title">{{comment.comment}}</p>
+    </div>
+  </div>
+</div>
+{{/each}}

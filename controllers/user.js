@@ -3,6 +3,7 @@ const { append } = require('express/lib/response');
 const { Post, Comment, User } = require('../models');
 const router = express.Router();
 const bcrypt = require('bcrypt')
+const withAuth = require('../utils/auth')
 
 router.get('/login', (req, res) => {
     res.render('login')
@@ -10,6 +11,26 @@ router.get('/login', (req, res) => {
 
 router.get('/register', (req, res) => {
     res.render('register')
+})
+
+router.get('/dashboard', withAuth, async (req, res) => {
+    const postsObj = await Post.findAll({
+        where: {user_id: req.session.userId},
+        order: [["id", "DESC"]],
+    })
+    const articles = postsObj.map((post) => post.get({ plain: true }))
+
+    const commentsObj = await Comment.findAll({
+        where: {user_id: req.session.userId},
+        order: [["id", "DESC"]]
+    })
+
+    const comments = commentsObj.map((comment) => comment.get({ plain: true }))
+
+    console.log(commentsObj)
+    console.log(postsObj[0])
+    console.log(commentsObj[0])
+    res.render('dashboard', {articles, comments})
 })
 
 router.post('/login', async (req, res) => {
